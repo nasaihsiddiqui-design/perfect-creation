@@ -114,6 +114,33 @@ function Index() {
           </Button>
         </article>
       </div>
+
+      {lightboxOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Profile picture"
+          onClick={() => setLightboxOpen(false)}
+          className="animate-fade-in fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-foreground/70 p-6 backdrop-blur-sm"
+        >
+          <figure className="relative max-h-full">
+            <img
+              src={profileAvatar.url}
+              alt="Joseph Anderson"
+              className="max-h-[85vh] rounded-xl object-contain shadow-card"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label="Close"
+              className="absolute -top-3 -right-3 size-9 rounded-full border border-border bg-card text-foreground shadow-control hover:bg-muted"
+            >
+              <X aria-hidden="true" />
+            </Button>
+          </figure>
+        </div>
+      )}
     </main>
   );
 }
