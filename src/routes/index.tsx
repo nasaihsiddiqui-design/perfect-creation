@@ -44,13 +44,20 @@ function Index() {
       <div className="job-card-stack relative w-full max-w-[340px]">
         <article className="card-hover relative z-10 rounded-card border border-border bg-card p-5 shadow-card">
           <header className="flex items-center gap-3">
-            <img
-              src={josephAvatar}
-              alt="Joseph Anderson"
-              width={512}
-              height={512}
-              className="size-10 rounded-full object-cover"
-            />
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              aria-label="Profile picture ko bare size mein dekhein"
+              className="avatar-hover shrink-0 cursor-zoom-in rounded-full ring-border transition"
+            >
+              <img
+                src={profileAvatar.url}
+                alt="Joseph Anderson"
+                width={512}
+                height={512}
+                className="size-10 rounded-full object-cover"
+              />
+            </button>
             <div className="min-w-0 flex-1">
               <h1 className="truncate text-[13px] font-semibold leading-tight text-card-foreground">
                 Joseph Anderson
