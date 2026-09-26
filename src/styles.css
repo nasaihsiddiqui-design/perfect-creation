@@ -188,9 +188,9 @@
 }
 
 .card-hover:hover {
-  border-color: oklch(0.78 0.06 251);
-  background-color: oklch(0.99 0.008 251);
-  box-shadow: 0 24px 48px -20px oklch(0.5 0.1 251 / 0.4), 0 8px 20px -14px oklch(0.32 0.02 250 / 0.24);
+  border-color: oklch(0.85 0.16 95);
+  background-color: oklch(0.98 0.06 95);
+  box-shadow: 0 24px 48px -20px oklch(0.75 0.15 95 / 0.45), 0 8px 20px -14px oklch(0.55 0.1 95 / 0.3);
 }
 
 /* Profile pic par cursor le jaane par ring */
