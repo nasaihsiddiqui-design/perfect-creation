@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bolt, Check, Heart } from "lucide-react";
-import { useState } from "react";
+import { Bolt, Check, Heart, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import josephAvatar from "@/assets/joseph-avatar.jpg";
+import profileAvatar from "@/assets/profile-avatar.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
