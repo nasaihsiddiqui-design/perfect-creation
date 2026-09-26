@@ -28,11 +28,21 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [saved, setSaved] = useState(false);
   const [applied, setApplied] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightboxOpen]);
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-5 py-12">
       <div className="job-card-stack relative w-full max-w-[340px]">
-        <article className="relative z-10 rounded-card border border-border bg-card p-5 shadow-card">
+        <article className="card-hover relative z-10 rounded-card border border-border bg-card p-5 shadow-card">
           <header className="flex items-center gap-3">
             <img
               src={josephAvatar}
