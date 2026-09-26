@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bolt, Check, Heart } from "lucide-react";
-import { useState } from "react";
+import { Bolt, Check, Heart, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import josephAvatar from "@/assets/joseph-avatar.jpg";
+import profileAvatar from "@/assets/profile-avatar.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -28,19 +28,36 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [saved, setSaved] = useState(false);
   const [applied, setApplied] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightboxOpen]);
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-5 py-12">
       <div className="job-card-stack relative w-full max-w-[340px]">
-        <article className="relative z-10 rounded-card border border-border bg-card p-5 shadow-card">
+        <article className="card-hover relative z-10 rounded-card border border-border bg-card p-5 shadow-card">
           <header className="flex items-center gap-3">
-            <img
-              src={josephAvatar}
-              alt="Joseph Anderson"
-              width={512}
-              height={512}
-              className="size-10 rounded-full object-cover"
-            />
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              aria-label="Profile picture ko bare size mein dekhein"
+              className="avatar-hover shrink-0 cursor-zoom-in rounded-full ring-border transition"
+            >
+              <img
+                src={profileAvatar.url}
+                alt="Joseph Anderson"
+                width={512}
+                height={512}
+                className="size-10 rounded-full object-cover"
+              />
+            </button>
             <div className="min-w-0 flex-1">
               <h1 className="truncate text-[13px] font-semibold leading-tight text-card-foreground">
                 Joseph Anderson
@@ -97,6 +114,33 @@ function Index() {
           </Button>
         </article>
       </div>
+
+      {lightboxOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Profile picture"
+          onClick={() => setLightboxOpen(false)}
+          className="animate-fade-in fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-foreground/70 p-6 backdrop-blur-sm"
+        >
+          <figure className="relative max-h-full">
+            <img
+              src={profileAvatar.url}
+              alt="Joseph Anderson"
+              className="max-h-[85vh] rounded-xl object-contain shadow-card"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label="Close"
+              className="absolute -top-3 -right-3 size-9 rounded-full border border-border bg-card text-foreground shadow-control hover:bg-muted"
+            >
+              <X aria-hidden="true" />
+            </Button>
+          </figure>
+        </div>
+      )}
     </main>
   );
 }
