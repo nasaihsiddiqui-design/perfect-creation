@@ -181,3 +181,24 @@
     transition: color 160ms ease, background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
   }
 }
+
+/* Card par cursor le jaane par rang badalta hai */
+.card-hover {
+  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.card-hover:hover {
+  border-color: oklch(0.78 0.06 251);
+  background-color: oklch(0.99 0.008 251);
+  box-shadow: 0 24px 48px -20px oklch(0.5 0.1 251 / 0.4), 0 8px 20px -14px oklch(0.32 0.02 250 / 0.24);
+}
+
+/* Profile pic par cursor le jaane par ring */
+.avatar-hover {
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.avatar-hover:hover {
+  box-shadow: 0 0 0 3px oklch(0.66 0.19 251 / 0.45);
+  transform: scale(1.05);
+}
