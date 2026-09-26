@@ -59,27 +59,37 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-primary-hover: var(--primary-hover);
+  --color-tag: var(--tag);
+  --color-tag-foreground: var(--tag-foreground);
+  --radius-card: var(--card-radius);
+  --shadow-card: var(--card-shadow);
+  --shadow-control: var(--control-shadow);
+  --shadow-action: var(--action-shadow);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.5rem;
+  --card-radius: 0.75rem;
+  --background: oklch(0.97 0.004 240);
+  --foreground: oklch(0.22 0.018 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.22 0.018 250);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.66 0.19 251);
+  --primary-hover: oklch(0.61 0.2 252);
+  --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted: oklch(0.965 0.006 240);
+  --muted-foreground: oklch(0.57 0.016 250);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
+  --border: oklch(0.91 0.008 245);
   --input: oklch(0.929 0.013 255.508);
   --ring: oklch(0.704 0.04 256.788);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -95,6 +105,11 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --tag: oklch(0.96 0.025 213);
+  --tag-foreground: oklch(0.43 0.075 222);
+  --card-shadow: 0 24px 48px -22px oklch(0.32 0.02 250 / 0.35), 0 8px 20px -14px oklch(0.32 0.02 250 / 0.24);
+  --control-shadow: 0 2px 8px -3px oklch(0.32 0.02 250 / 0.18);
+  --action-shadow: 0 12px 24px -12px oklch(0.66 0.19 251 / 0.65);
 }
 
 .dark {
@@ -140,5 +155,29 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@utility job-card-stack {
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 10px 10px -12px;
+    content: "";
+    border-radius: var(--card-radius);
+    background: oklch(0.925 0.006 245);
+  }
+
+  &::after {
+    inset: 20px 22px -22px;
+    background: oklch(0.89 0.006 245);
+    filter: blur(1px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  button {
+    transition: color 160ms ease, background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
   }
 }
